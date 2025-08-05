@@ -1,2 +1,11 @@
 venv/
 libs/
+# Sensitive files and directories
+.env
+*.key
+*.pem
+*.p12
+*.jks
+*.log
+*.sqlite3
+*.db
