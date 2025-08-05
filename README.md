@@ -10,6 +10,12 @@ This project serves as a template for developing Python applications that integr
 - **NIST Guidelines Reference:** Contains a reference to NIST guidelines (`/nist`) for secure bot development, emphasizing best practices for handling sensitive information.
 - **Configurable Preferences:** Introduces a preference system (`/preferences`) that allows the Gemini CLI to understand and adapt to user-defined preferences for various tasks, such as preferred tools for web searches, project analysis, and security scanning.
 
+## Project Focus: Web Scraper
+
+This repository's primary focus is the `scraper.py` script. This script demonstrates how to build a simple web scraper that leverages the `ddg` slash command to search for and display the latest news from a specified website (currently `darkreading.com`).
+
+This project was built upon the foundation of the `matt_raio_bot_constraints` repository, which provides the underlying framework for Gemini CLI integration and custom slash commands.
+
 ## Setup and Installation
 
 To get this project up and running, follow these steps:
