@@ -29,7 +29,8 @@ class StringIOWithNoName(io.StringIO):
         super().__init__(*args, **kwargs)
         self.name = None
 
-def run_bandit(path="."):
+async def run_bandit(path="."):
+
     print(f"Running bandit on: {path}")
     
     # Create a StringIOWithNoName object to capture output
