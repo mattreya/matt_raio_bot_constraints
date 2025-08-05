@@ -1,0 +1,2 @@
+duckduckgo-mcp-server
+git+https://github.com/PyCQA/bandit.git#egg=bandit

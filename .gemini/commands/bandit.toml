@@ -1,0 +1,3 @@
+name = "bandit"
+description = "Runs the Bandit static analysis tool on the project."
+command = "python -c \"import asyncio; from slash_commands import run_bandit; asyncio.run(run_bandit())""

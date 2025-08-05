@@ -1,0 +1,3 @@
+name = "nist"
+description = "Displays the NIST guidelines for bot development."
+command = "python -c \"from default_api import read_file; print(read_file(absolute_path='/home/matt/PycharmProjects/matt_raio_bot_constraints/NIST_guildlines.md'))\""

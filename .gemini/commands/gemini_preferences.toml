@@ -1,0 +1,14 @@
+# Preferences for Gemini CLI's use of slash commands
+
+[web_search]
+preferred_command = "ddg"
+description = "Use the 'ddg' slash command for general web searches."
+
+[project_analysis]
+preferred_command = "nist"
+description = "Use the 'nist' slash command for project analysis related to guidelines."
+
+[security_scan]
+preferred_command = "bandit"
+description = "Use the 'bandit' slash command for security scanning. This preference is active once the project is under Git version control."
+condition = "git_repo_initialized" # This is a flag for internal logic
