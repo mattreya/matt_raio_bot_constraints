@@ -5,6 +5,7 @@ import os
 import io
 import contextlib
 import asyncio
+import subprocess
 
 from duckduckgo_mcp_server.server import DuckDuckGoSearcher
 from mcp.server.fastmcp import Context
@@ -35,27 +36,20 @@ async def run_bandit(path="."):
     
     # Create a StringIOWithNoName object to capture output
     captured_output = StringIOWithNoName()
+    output = ""
     
-    # Temporarily redirect sys.stdout to our captured_output
-    original_stdout = sys.stdout
-    sys.stdout = captured_output
-    
-    original_argv = sys.argv
-    try:
-        sys.argv = ['bandit', '-r', path, '-f', 'txt']
-        bandit_main.main()
-        output = captured_output.getvalue()
-        print(output) # Print the captured output to the original stdout
-    except SystemExit as e:
-        output = captured_output.getvalue()
-        print(output) # Print the captured output to the original stdout
-        if e.code == 0:
-            print("Bandit scan completed. No issues found.")
-        else:
-            print(f"Bandit scan completed. Issues found (exit code: {e.code}).")
-    finally:
-        sys.stdout = original_stdout # Restore original stdout
-        sys.argv = original_argv
+    # Run Bandit as a subprocess
+    command = [sys.executable, '-m', 'bandit', '-r', path, '-f', 'txt']
+    process = subprocess.run(command, capture_output=True, text=True)
+
+    print(process.stdout)
+    if process.stderr:
+        print(process.stderr)
+
+    if process.returncode == 0:
+        print("Bandit scan completed. No issues found.")
+    else:
+        print(f"Bandit scan completed. Issues found (exit code: {process.returncode}).")
 
 async def perform_duckduckgo_search(query: str):
     searcher = DuckDuckGoSearcher()
