@@ -1,3 +1,6 @@
 name = "ddg"
 description = "Performs a DuckDuckGo search using the duckduckgo_mcp_interface."
-command = "/home/matt/PycharmProjects/matt_raio_bot_constraints/venv/bin/python -c \"import asyncio; from slash_commands import run_duckduckgo; asyncio.run(run_duckduckgo())""
+command = "/home/matt/PycharmProjects/CCNP_Trainer/venv/bin/python -c \"import asyncio; from slash_commands import run_duckduckgo; asyncio.run(run_duckduckgo('{query}'))\""
+
+[args.query]
+description = "The search query.""

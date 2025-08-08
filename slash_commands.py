@@ -6,6 +6,7 @@ import io
 import contextlib
 import asyncio
 import subprocess
+import json
 
 from duckduckgo_mcp_server.server import DuckDuckGoSearcher
 from mcp.server.fastmcp import Context
@@ -66,7 +67,7 @@ async def run_duckduckgo(query: str = "Python programming"):
     print("\n--- DuckDuckGo Search Results ---")
     print(results)
 
-if __name__ == '__main__':
-    # Example of how to run the slash commands
-    run_bandit()
-    asyncio.run(run_duckduckgo("latest AI news"))
+async def quizme():
+    with open('encor_questions.json', 'r') as f:
+        data = json.load(f)
+    return data['Architecture']
