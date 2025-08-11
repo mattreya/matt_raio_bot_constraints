@@ -13,23 +13,13 @@ The `/quizme` command is implemented in the `slash_commands.py` file. The `quiz_
 -   `question_style`: The style of questions you want to be asked (e.g., "multiple choice", "flashcard").
 -   `topic`: The topic you want to be quizzed on (e.g., "CCNP", "Security").
 
-Currently, the `quiz_me` function is a placeholder that confirms the quiz is starting. Here is the relevant code snippet from `slash_commands.py`:
+The command will then fetch questions from the `question_bank.py` file and present them to the user. After the quiz, the user will receive a score. If the score is below 50%, the command will automatically generate GNS3 configuration files to help the user practice the topic they are struggling with.
 
-```python
-def quiz_me(question_style: str, topic: str):
-    """
-    A placeholder for the quiz_me slash command.
-    """
+## GNS3 Configuration Generation
 
-    return f"Starting a {question_style} quiz on {topic}!"
-```
+When a user performs poorly on a quiz, the CCNP Trainer will automatically generate the necessary configuration files for a GNS3 lab. These files are saved in the `gns3_configs` directory.
 
-In a full implementation, this function would:
-
-1.  Fetch questions from a question bank based on the chosen `topic`.
-2.  Present questions to the user in the specified `question_style`.
-3.  Receive and evaluate the user's answers.
-4.  Keep track of the user's score and provide feedback.
+For detailed instructions on how to use these files, please refer to the [GNS3_INSTRUCTIONS.md](GNS3_INSTRUCTIONS.md) file.
 
 ## Other Features
 
@@ -44,6 +34,10 @@ This project also includes several other slash commands:
 
 -   `.gemini/commands/`: Contains the `.toml` files that define the custom Gemini CLI slash commands.
 -   `slash_commands.py`: Implements the Python functions for the slash commands, including `quiz_me`.
+-   `question_bank.py`: Contains the questions and answers for the quizzes.
+-   `gns3_topology.py`: Defines the GNS3 network topology for the labs.
+-   `GNS3_INSTRUCTIONS.md`: Provides instructions on how to use the generated GNS3 configuration files.
+-   `test_quiz.py`: Contains unit tests for the quiz functionality.
 -   `scraper.py`: A script that uses the `/ddg` command to scrape news from a website.
 -   `requirements.txt`: Lists the project's Python dependencies.
 -   `NIST_guildlines.md`: A document containing the NIST guidelines for bot development, which can be a source for quiz questions.
@@ -75,4 +69,4 @@ To get this project up and running, follow these steps:
 Once the project is set up, you can interact with it through the Gemini CLI using the defined slash commands. The main command is `/quizme`:
 
 -   **`/quizme`**: Starts an interactive quiz. You can specify the `question_style` and `topic`.
-    -   Example: `/quizme question_style="multiple choice" topic="CCNP"`
+    -   Example: `/quizme question_style="multiple choice" topic="OSPF"`
