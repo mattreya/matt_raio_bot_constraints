@@ -1,20 +1,53 @@
-# Gemini CLI Project Template
+# CCNP Trainer - Interactive CLI Quiz
 
-This project serves as a template for developing Python applications that integrate with the Gemini Command Line Interface (CLI). It demonstrates how to incorporate external Python packages like `bandit` for security analysis and `duckduckgo_mcp_interface` for web searches, and expose their functionalities as custom Gemini CLI slash commands.
+This project provides an interactive Command Line Interface (CLI) quiz experience using the Gemini CLI. The main feature is the `/quizme` slash command, which allows you to test your knowledge on various topics.
 
-## Features
+## The `/quizme` Command
 
-- **Gemini CLI Integration:** Provides a structured way to define and manage custom slash commands for the Gemini CLI.
-- **Bandit Integration:** Includes a slash command (`/bandit`) to run the Bandit static analysis tool on your project, helping identify common security vulnerabilities in Python code.
-- **DuckDuckGo Search Integration:** Offers a slash command (`/ddg`) to perform web searches using the DuckDuckGo API, leveraging the `duckduckgo_mcp_interface`.
-- **NIST Guidelines Reference:** Contains a reference to NIST guidelines (`/nist`) for secure bot development, emphasizing best practices for handling sensitive information.
-- **Configurable Preferences:** Introduces a preference system (`/preferences`) that allows the Gemini CLI to understand and adapt to user-defined preferences for various tasks, such as preferred tools for web searches, project analysis, and security scanning.
+The core of this project is the `/quizme` command, designed to provide an interactive quiz experience directly within the Gemini CLI.
 
-## Project Focus: Web Scraper
+### How it Works
 
-This repository's primary focus is the `scraper.py` script. This script demonstrates how to build a simple web scraper that leverages the `ddg` slash command to search for and display the latest news from a specified website (currently `darkreading.com`).
+The `/quizme` command is implemented in the `slash_commands.py` file. The `quiz_me` function takes two arguments:
 
-This project was built upon the foundation of the `matt_raio_bot_constraints` repository, which provides the underlying framework for Gemini CLI integration and custom slash commands.
+-   `question_style`: The style of questions you want to be asked (e.g., "multiple choice", "flashcard").
+-   `topic`: The topic you want to be quizzed on (e.g., "CCNP", "Security").
+
+Currently, the `quiz_me` function is a placeholder that confirms the quiz is starting. Here is the relevant code snippet from `slash_commands.py`:
+
+```python
+def quiz_me(question_style: str, topic: str):
+    """
+    A placeholder for the quiz_me slash command.
+    """
+
+    return f"Starting a {question_style} quiz on {topic}!"
+```
+
+In a full implementation, this function would:
+
+1.  Fetch questions from a question bank based on the chosen `topic`.
+2.  Present questions to the user in the specified `question_style`.
+3.  Receive and evaluate the user's answers.
+4.  Keep track of the user's score and provide feedback.
+
+## Other Features
+
+This project also includes several other slash commands:
+
+-   **`/bandit`**: Runs the Bandit static analysis tool to find common security vulnerabilities in the Python code.
+-   **`/ddg`**: Performs a web search using the DuckDuckGo API.
+-   **`/nist`**: Displays the NIST guidelines for secure bot development.
+-   **`/preferences`**: Shows the current user preferences for the Gemini CLI.
+
+## Project Structure
+
+-   `.gemini/commands/`: Contains the `.toml` files that define the custom Gemini CLI slash commands.
+-   `slash_commands.py`: Implements the Python functions for the slash commands, including `quiz_me`.
+-   `scraper.py`: A script that uses the `/ddg` command to scrape news from a website.
+-   `requirements.txt`: Lists the project's Python dependencies.
+-   `NIST_guildlines.md`: A document containing the NIST guidelines for bot development, which can be a source for quiz questions.
+-   `.gitignore`: Specifies files and directories to be ignored by Git.
 
 ## Setup and Installation
 
@@ -27,32 +60,19 @@ To get this project up and running, follow these steps:
     ```
 
 2.  **Create and activate a virtual environment:**
-    It's highly recommended to use a virtual environment to manage project dependencies.
     ```bash
     python3 -m venv venv
     source venv/bin/activate
     ```
 
 3.  **Install dependencies:**
-    Install the required Python packages using `pip`.
     ```bash
     pip install -r requirements.txt
     ```
 
 ## Usage
 
-Once the project is set up, you can interact with it through the Gemini CLI using the defined slash commands.
+Once the project is set up, you can interact with it through the Gemini CLI using the defined slash commands. The main command is `/quizme`:
 
--   **`/bandit`**: Runs the Bandit static analysis tool on the project.
--   **`/ddg`**: Performs a DuckDuckGo web search. You can specify a query as an argument.
--   **`/nist`**: Displays the NIST guidelines for bot development.
--   **`/preferences`**: Shows the current preferences configured for the Gemini CLI's behavior.
-
-## Project Structure
-
--   `.gemini/commands/`: Contains the `.toml` files defining the custom Gemini CLI slash commands.
--   `slash_commands.py`: Implements the Python functions that are executed by the slash commands.
--   `requirements.txt`: Lists the project's Python dependencies.
--   `NIST_guildlines.md`: Document outlining NIST guidelines for bot development.
--   `.gitignore`: Specifies files and directories to be ignored by Git.
-
+-   **`/quizme`**: Starts an interactive quiz. You can specify the `question_style` and `topic`.
+    -   Example: `/quizme question_style="multiple choice" topic="CCNP"`
