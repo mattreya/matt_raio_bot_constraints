@@ -9,3 +9,9 @@ libs/
 *.log
 *.sqlite3
 *.db
+
+# Python specific
+__pycache__/
+
+# IDE specific
+.idea/
