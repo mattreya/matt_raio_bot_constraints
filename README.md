@@ -1,47 +1,24 @@
-# CCNP Trainer - Interactive CLI Quiz
+# Gemini CLI Base Repository
 
-This project provides an interactive Command Line Interface (CLI) quiz experience using the Gemini CLI. The main feature is the `/quizme` slash command, which allows you to test your knowledge on various topics.
+This repository serves as the foundational project for developing and integrating custom slash commands with the Gemini Command Line Interface (CLI). It is designed as a base on which other specialized repositories and projects can be built, extending the Gemini CLI's capabilities with new functionalities.
 
-## The `/quizme` Command
+## Available Slash Commands
 
-The core of this project is the `/quizme` command, designed to provide an interactive quiz experience directly within the Gemini CLI.
+This project provides the following core slash commands:
 
-### How it Works
+-   **`/askgordon`**: Provides intelligent assistance or answers questions within the Gemini CLI context.
+-   **`/bandit`**: Runs the Bandit static analysis tool on your project to identify common security vulnerabilities in Python code.
+-   **`/ddg`**: Performs web searches using the DuckDuckGo API.
 
-The `/quizme` command is implemented in the `slash_commands.py` file. The `quiz_me` function takes two arguments:
-
--   `question_style`: The style of questions you want to be asked (e.g., "multiple choice", "flashcard").
--   `topic`: The topic you want to be quizzed on (e.g., "CCNP", "Security").
-
-The command will then fetch questions from the `question_bank.py` file and present them to the user. After the quiz, the user will receive a score. If the score is below 50%, the command will automatically generate GNS3 configuration files to help the user practice the topic they are struggling with.
-
-## GNS3 Configuration Generation
-
-When a user performs poorly on a quiz, the CCNP Trainer will automatically generate the necessary configuration files for a GNS3 lab. These files are saved in the `gns3_configs` directory.
-
-For detailed instructions on how to use these files, please refer to the [GNS3_INSTRUCTIONS.md](GNS3_INSTRUCTIONS.md) file.
-
-## Other Features
-
-This project also includes several other slash commands:
-
--   **`/bandit`**: Runs the Bandit static analysis tool to find common security vulnerabilities in the Python code.
--   **`/ddg`**: Performs a web search using the DuckDuckGo API.
+-   **`/mcp_catalog_lookup`**: Allows you to search and retrieve information from the Docker Multi-Cloud Platform (MCP) Catalog.
+-   **`/mcp_toolkit_selector`**: Assists in determining the best Docker tool from the MCP Toolkit for a specific task or requirement.
 -   **`/nist`**: Displays the NIST guidelines for secure bot development.
--   **`/preferences`**: Shows the current user preferences for the Gemini CLI.
+-   **`/preferences`**: Shows the current user preferences configured for the Gemini CLI's behavior.
+-   **`/trivy`**: Runs a Trivy filesystem scan on the current directory to identify security vulnerabilities in project dependencies and configurations.
 
-## Project Structure
+## Building on This Base
 
--   `.gemini/commands/`: Contains the `.toml` files that define the custom Gemini CLI slash commands.
--   `slash_commands.py`: Implements the Python functions for the slash commands, including `quiz_me`.
--   `question_bank.py`: Contains the questions and answers for the quizzes.
--   `gns3_topology.py`: Defines the GNS3 network topology for the labs.
--   `GNS3_INSTRUCTIONS.md`: Provides instructions on how to use the generated GNS3 configuration files.
--   `test_quiz.py`: Contains unit tests for the quiz functionality.
--   `scraper.py`: A script that uses the `/ddg` command to scrape news from a website.
--   `requirements.txt`: Lists the project's Python dependencies.
--   `NIST_guildlines.md`: A document containing the NIST guidelines for bot development, which can be a source for quiz questions.
--   `.gitignore`: Specifies files and directories to be ignored by Git.
+Other repositories can leverage the framework and existing commands provided here. By cloning this repository and extending its `slash_commands.py` or adding new `.toml` command definitions, developers can quickly create specialized Gemini CLI tools tailored to specific domains or tasks.
 
 ## Setup and Installation
 
@@ -54,19 +31,28 @@ To get this project up and running, follow these steps:
     ```
 
 2.  **Create and activate a virtual environment:**
+    It's highly recommended to use a virtual environment to manage project dependencies.
     ```bash
     python3 -m venv venv
     source venv/bin/activate
     ```
 
 3.  **Install dependencies:**
+    Install the required Python packages using `pip`.
     ```bash
     pip install -r requirements.txt
     ```
 
-## Usage
+## Project Structure
 
-Once the project is set up, you can interact with it through the Gemini CLI using the defined slash commands. The main command is `/quizme`:
-
--   **`/quizme`**: Starts an interactive quiz. You can specify the `question_style` and `topic`.
-    -   Example: `/quizme question_style="multiple choice" topic="OSPF"`
+-   `.gemini/commands/`: Contains the `.toml` files defining the custom Gemini CLI slash commands.
+-   `slash_commands.py`: Implements the Python functions that are executed by the slash commands.
+-   `trivy_commands.py`: Implements the Python functions for Trivy scans.
+-   `requirements.txt`: Lists the project's Python dependencies.
+-   `NIST_guildlines.md`: Document outlining NIST guidelines for bot development.
+-   `question_bank.py`: Contains questions and answers for the `/quizme` command (even though `/quizme` is not listed as a primary command, the file might still be present in the repo).
+-   `gns3_topology.py`: Defines the GNS3 network topology for the `/quizme` command.
+-   `GNS3_INSTRUCTIONS.md`: Provides instructions for GNS3 configurations.
+-   `test_quiz.py`: Contains unit tests for the quiz functionality.
+-   `scraper.py`: A script that uses the `/ddg` command to scrape news from a website.
+-   `.gitignore`: Specifies files and directories to be ignored by Git.
