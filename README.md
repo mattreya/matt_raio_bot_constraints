@@ -50,9 +50,6 @@ To get this project up and running, follow these steps:
 -   `trivy_commands.py`: Implements the Python functions for Trivy scans.
 -   `requirements.txt`: Lists the project's Python dependencies.
 -   `NIST_guildlines.md`: Document outlining NIST guidelines for bot development.
--   `question_bank.py`: Contains questions and answers for the `/quizme` command (even though `/quizme` is not listed as a primary command, the file might still be present in the repo).
--   `gns3_topology.py`: Defines the GNS3 network topology for the `/quizme` command.
--   `GNS3_INSTRUCTIONS.md`: Provides instructions for GNS3 configurations.
--   `test_quiz.py`: Contains unit tests for the quiz functionality.
+
 -   `scraper.py`: A script that uses the `/ddg` command to scrape news from a website.
 -   `.gitignore`: Specifies files and directories to be ignored by Git.
