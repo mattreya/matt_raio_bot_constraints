@@ -17,6 +17,8 @@ This project provides the following core slash commands:
 -   **`/trivy`**: Runs a Trivy filesystem scan on the current directory to identify security vulnerabilities in project dependencies and configurations.
 -   **`/rollback`**: Reverts the last change made to the project.
 
+-   **`/triage`**: Triages an error log and prepares a summary for Slack.
+
 ## Building on This Base
 
 Other repositories can leverage the framework and existing commands provided here. By cloning this repository and extending its `slash_commands.py` or adding new `.toml` command definitions, developers can quickly create specialized Gemini CLI tools tailored to specific domains or tasks.

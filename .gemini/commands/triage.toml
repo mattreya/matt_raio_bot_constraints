@@ -1,0 +1,10 @@
+name = "triage"
+description = "Triages an error log and prepares a summary for Slack."
+parameters = [
+    {
+        name = "error_log",
+        type = "string",
+        description = "The full content of the error log to triage."
+    }
+]
+command_script = "python triage_error.py \"{{.error_log}}\""
