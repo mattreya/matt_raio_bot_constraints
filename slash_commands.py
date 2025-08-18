@@ -31,7 +31,41 @@ class StringIOWithNoName(io.StringIO):
         super().__init__(*args, **kwargs)
         self.name = None
 
+_LAST_COMMIT_HASH = None
+
+def _get_current_commit_hash():
+    try:
+        result = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        print(f"Error getting current commit hash: {e}")
+        return None
+
+async def rollback():
+    global _LAST_COMMIT_HASH
+    if _LAST_COMMIT_HASH:
+        print(f"Attempting to revert to commit: {_LAST_COMMIT_HASH}")
+        try:
+            # This command will create a new commit that undoes the changes from the specified commit
+            result = subprocess.run(['git', 'revert', _LAST_COMMIT_HASH, '--no-edit'], capture_output=True, text=True, check=True)
+            print(result.stdout)
+            if result.stderr:
+                print(result.stderr)
+            print(f"Successfully reverted to commit: {_LAST_COMMIT_HASH}")
+            _LAST_COMMIT_HASH = None # Clear the last commit hash after rollback
+        except subprocess.CalledProcessError as e:
+            print(f"Error reverting commit: {e}")
+            print(f"Stderr: {e.stderr}")
+    else:
+        print("No previous commit hash stored for rollback. Please run a command that stores the commit hash first (e.g., /bandit).")
+
 async def run_bandit(path="."):
+    global _LAST_COMMIT_HASH
+    _LAST_COMMIT_HASH = _get_current_commit_hash()
+    if _LAST_COMMIT_HASH:
+        print(f"Current commit hash stored: {_LAST_COMMIT_HASH}")
+    else:
+        print("Could not get current commit hash. Rollback might not work as expected.")
 
     print(f"Running bandit on: {path}")
     

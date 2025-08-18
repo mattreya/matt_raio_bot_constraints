@@ -15,6 +15,7 @@ This project provides the following core slash commands:
 -   **`/nist`**: Displays the NIST guidelines for secure bot development.
 -   **`/preferences`**: Shows the current user preferences configured for the Gemini CLI's behavior.
 -   **`/trivy`**: Runs a Trivy filesystem scan on the current directory to identify security vulnerabilities in project dependencies and configurations.
+-   **`/rollback`**: Reverts the last change made to the project.
 
 ## Building on This Base
 
