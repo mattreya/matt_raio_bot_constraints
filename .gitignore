@@ -13,5 +13,9 @@ libs/
 # Python specific
 __pycache__/
 
-# IDE specific
-.idea/
+ # IDE specific
+ .idea/
+ 
+ # Downloaded files
+ Space_Relations_Donald_Barr.pdf
+ 

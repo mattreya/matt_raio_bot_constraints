@@ -54,5 +54,9 @@ To get this project up and running, follow these steps:
 -   `requirements.txt`: Lists the project's Python dependencies.
 -   `NIST_guildlines.md`: Document outlining NIST guidelines for bot development.
 
--   `scraper.py`: A script that uses the `/ddg` command to scrape news from a website.
--   `.gitignore`: Specifies files and directories to be ignored by Git.
+ -   `scraper.py`: A script that uses the `/ddg` command to scrape news from a website.
+ -   `.gitignore`: Specifies files and directories to be ignored by Git.
+
+## Opencode Integration
+
+This repository demonstrates the use of opencode, an AI coding agent built for the terminal, to create and manage custom commands. Opencode was used to examine existing gemini-cli commands in the .gemini directory and create mirroring commands in the project folder, adapted for DuckDuckGo searches and local execution. The commands are defined in .toml files and can be executed via opencode's bash tool.
