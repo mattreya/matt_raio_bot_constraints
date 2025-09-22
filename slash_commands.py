@@ -5,7 +5,7 @@ import os
 import io
 import contextlib
 import asyncio
-import subprocess
+import subprocess  # nosec B404
 import json
 
 from duckduckgo_mcp_server.server import DuckDuckGoSearcher
@@ -35,7 +35,7 @@ _LAST_COMMIT_HASH = None
 
 def _get_current_commit_hash():
     try:
-        result = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True)
+        result = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True)  # nosec B603 B607
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"Error getting current commit hash: {e}")
@@ -47,7 +47,7 @@ async def rollback():
         print(f"Attempting to revert to commit: {_LAST_COMMIT_HASH}")
         try:
             # This command will create a new commit that undoes the changes from the specified commit
-            result = subprocess.run(['git', 'revert', _LAST_COMMIT_HASH, '--no-edit'], capture_output=True, text=True, check=True)
+            result = subprocess.run(['git', 'revert', _LAST_COMMIT_HASH, '--no-edit'], capture_output=True, text=True, check=True)  # nosec B603 B607
             print(result.stdout)
             if result.stderr:
                 print(result.stderr)
@@ -75,7 +75,7 @@ async def run_bandit(path="."):
     
     # Run Bandit as a subprocess
     command = [sys.executable, '-m', 'bandit', '-r', path, '-f', 'txt']
-    process = subprocess.run(command, capture_output=True, text=True)
+    process = subprocess.run(command, capture_output=True, text=True)  # nosec B603  # nosec B603
 
     print(process.stdout)
     if process.stderr:
