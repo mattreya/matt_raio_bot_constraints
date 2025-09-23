@@ -1,1 +1,3 @@
-name = "preferences"description = "Displays the configured preferences for Gemini CLI's behavior."command = "python -c \"from default_api import read_file; print(read_file(absolute_path='/home/matt/PycharmProjects/matt_raio_bot_constraints/.gemini/commands/gemini_preferences.toml'))\""
+name = "preferences"
+description = "Displays the configured preferences for Gemini CLI's behavior."
+command = "python -c \"from default_api import read_file; print(read_file(absolute_path='/home/matt/PycharmProjects/matt_raio_bot_constraints/.gemini/commands/gemini_preferences.toml'))\""
